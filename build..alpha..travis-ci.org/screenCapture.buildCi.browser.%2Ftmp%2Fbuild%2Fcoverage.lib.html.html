@@ -1,0 +1,2059 @@
+<html lang="en"><head>
+    <title>Code coverage report for node-npmtest-gitgoodies/node_modules/gitgoodies/lib/gg.js</title>
+    <meta charset="utf-8">
+    <style>
+        body, html {
+            margin:0; padding: 0;
+        }
+        body {
+            font-family: Arial, Helvetica;
+            font-size: 10pt;
+        }
+        div.header, div.footer {
+            background: #eee;
+            padding: 1em;
+        }
+        div.header {
+            height: 160px;
+            padding: 0 1em 0 1em;
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #666;
+            width: 100%;
+        }
+        div.footer {
+            border-top: 1px solid #666;
+        }
+        div.body {
+            margin-top: 170px;
+        }
+        div.meta {
+            font-size: 90%;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-weight: normal;
+        }
+        h1 {
+            font-size: 12pt;
+        }
+        h2 {
+            font-size: 10pt;
+        }
+        pre {
+            font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            tab-size: 2;
+        }
+
+        div.path { font-size: 110%; }
+        div.path a:link, div.path a:visited { color: #000; }
+        table.coverage { border-collapse: collapse; margin:0; padding: 0 }
+
+        table.coverage td {
+            margin: 0;
+            padding: 0;
+            color: #111;
+            vertical-align: top;
+        }
+        table.coverage td.line-count {
+            width: 50px;
+            text-align: right;
+            padding-right: 5px;
+        }
+        table.coverage td.line-coverage {
+            color: #777 !important;
+            text-align: right;
+            border-left: 1px solid #666;
+            border-right: 1px solid #666;
+        }
+
+        table.coverage td.text {
+        }
+
+        table.coverage td span.cline-any {
+            display: inline-block;
+            padding: 0 5px;
+            width: 40px;
+        }
+        table.coverage td span.cline-neutral {
+            background: #eee;
+        }
+        table.coverage td span.cline-yes {
+            background: #b5d592;
+            color: #999;
+        }
+        table.coverage td span.cline-no {
+            background: #fc8c84;
+        }
+
+        .cstat-yes { color: #111; }
+        .cstat-no { background: #fc8c84; color: #111; }
+        .fstat-no { background: #ffc520; color: #111 !important; }
+        .cbranch-no { background:  yellow !important; color: #111; }
+
+        .cstat-skip { background: #ddd; color: #111; }
+        .fstat-skip { background: #ddd; color: #111 !important; }
+        .cbranch-skip { background: #ddd !important; color: #111; }
+
+        .missing-if-branch {
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: black;
+            color: yellow;
+        }
+
+        .skip-if-branch {
+            display: none;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: #ccc;
+            color: white;
+        }
+
+        .missing-if-branch .typ, .skip-if-branch .typ {
+            color: inherit !important;
+        }
+
+        .entity, .metric { font-weight: bold; }
+        .metric { display: inline-block; border: 1px solid #333; padding: 0.3em; background: white; }
+        .metric small { font-size: 80%; font-weight: normal; color: #666; }
+
+        div.coverage-summary table { border-collapse: collapse; margin: 3em; font-size: 110%; }
+        div.coverage-summary td, div.coverage-summary table  th { margin: 0; padding: 0.25em 1em; border-top: 1px solid #666; border-bottom: 1px solid #666; }
+        div.coverage-summary th { text-align: left; border: 1px solid #666; background: #eee; font-weight: normal; }
+        div.coverage-summary th.file { border-right: none !important; }
+        div.coverage-summary th.pic { border-left: none !important; text-align: right; }
+        div.coverage-summary th.pct { border-right: none !important; }
+        div.coverage-summary th.abs { border-left: none !important; text-align: right; }
+        div.coverage-summary td.pct { text-align: right; border-left: 1px solid #666; }
+        div.coverage-summary td.abs { text-align: right; font-size: 90%; color: #444; border-right: 1px solid #666; }
+        div.coverage-summary td.file { text-align: right; border-left: 1px solid #666; white-space: nowrap;  }
+        div.coverage-summary td.pic { min-width: 120px !important;  }
+        div.coverage-summary a:link { color: #000; }
+        div.coverage-summary a:visited { color: #333; }
+        div.coverage-summary tfoot td { border-top: 1px solid #666; }
+
+        div.coverage-summary .yui3-datatable-sort-indicator, div.coverage-summary .dummy-sort-indicator {
+            height: 10px;
+            width: 7px;
+            display: inline-block;
+            margin-left: 0.5em;
+        }
+        div.coverage-summary .yui3-datatable-sort-indicator {
+            background: no-repeat scroll 0 0 transparent;
+        }
+        div.coverage-summary .yui3-datatable-sorted .yui3-datatable-sort-indicator {
+            background-position: 0 -20px;
+        }
+        div.coverage-summary .yui3-datatable-sorted-desc .yui3-datatable-sort-indicator {
+            background-position: 0 -10px;
+        }
+
+        .high { background: #b5d592 !important; }
+        .medium { background: #ffe87c !important; }
+        .low { background: #fc8c84 !important; }
+
+        span.cover-fill, span.cover-empty {
+            display:inline-block;
+            border:1px solid #444;
+            background: white;
+            height: 12px;
+        }
+        span.cover-fill {
+            background: #ccc;
+            border-right: 1px solid #444;
+        }
+        span.cover-empty {
+            background: white;
+            border-left: none;
+        }
+        span.cover-full {
+            border-right: none !important;
+        }
+        pre.prettyprint {
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .com { color: #999 !important; }
+        .ignore-none { color: #999; font-weight: normal; }
+
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1 style="font-weight: bold;">
+        <a href="https://github.com/npmtest/node-npmtest-gitgoodies">npmtest-gitgoodies (v0.0.1)</a>
+    </h1>
+    <h1>Code coverage report for <span class="entity">node-npmtest-gitgoodies/node_modules/gitgoodies/lib/gg.js</span></h1>
+    <h2>
+        
+        Statements: <span class="metric">8.88% <small>(27 / 304)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class="metric">0% <small>(0 / 188)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class="metric">0% <small>(0 / 40)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class="metric">8.88% <small>(27 / 304)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../../index.html">All files</a> » <a href="index.html">node-npmtest-gitgoodies/node_modules/gitgoodies/lib/</a> » gg.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tbody><tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606
+607
+608
+609
+610
+611
+612
+613</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">var exec = require('child_process').exec;
+&nbsp;
+// Force CLI coloring.
+var Chalk = require('chalk');
+var chalk = new Chalk.constructor({
+  enabled: true
+});
+&nbsp;
+// Output styling.
+var success = chalk.green;
+var notice = chalk.yellow;
+var whoops = chalk.bold.red; // Can't name error as exec uses error in callback.
+var underline = chalk.underline;
+&nbsp;
+// Operating system.
+var isWindows = /^win/.test(process.platform);
+&nbsp;
+exports.version = <span class="fstat-no" title="function not covered">function() {</span>
+<span class="cstat-no" title="statement not covered">  var package = require('../package.json');</span>
+<span class="cstat-no" title="statement not covered">  var version = package.version;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">  console.log(success('gg') + ' version ' + notice(version));</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">  exports.upToDate(true, false);</span>
+};
+&nbsp;
+exports.upToDate = <span class="fstat-no" title="function not covered">function(reportOnTrue, reportOnFalse) {</span>
+<span class="cstat-no" title="statement not covered">  var package = require('../package.json');</span>
+<span class="cstat-no" title="statement not covered">  var currentVersion = package.version;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">  var latestVersion = require('latest-version');</span>
+<span class="cstat-no" title="statement not covered">  latestVersion('gitgoodies', <span class="fstat-no" title="function not covered">function(err, version) {</span></span>
+<span class="cstat-no" title="statement not covered">    if (version !== currentVersion) { // Not up to date.</span>
+<span class="cstat-no" title="statement not covered">      if (reportOnFalse) {</span>
+<span class="cstat-no" title="statement not covered">        console.log();</span>
+<span class="cstat-no" title="statement not covered">        console.log(notice('[~] This version of gg is not up-to-date.') + ' ' + chalk.yellow('Update with ' + chalk.bold('npm update -g gitgoodies') + '.'));</span>
+      }
+    } else {
+<span class="cstat-no" title="statement not covered">      if (reportOnTrue) {</span>
+<span class="cstat-no" title="statement not covered">        console.log();</span>
+<span class="cstat-no" title="statement not covered">        console.log(success('[✔] This version of gg is up-to-date.'));</span>
+      }
+    }
+  });
+};
+&nbsp;
+exports.init = <span class="fstat-no" title="function not covered">function() {</span>
+<span class="cstat-no" title="statement not covered">  exec('git init', <span class="fstat-no" title="function not covered">function(error, stdout, stderr) {</span></span>
+<span class="cstat-no" title="statement not covered">    if (stdout.substring(0, 13) === 'Reinitialized') {</span>
+<span class="cstat-no" title="statement not covered">      console.log(notice('[~] Reinitialized existing Git repository.'));</span>
+    } else {
+<span class="cstat-no" title="statement not covered">      console.log(success('[✔] Initialized new Git repository.'));</span>
+    }
+  });
+};
+&nbsp;
+exports.ignore = <span class="fstat-no" title="function not covered">function(template) {</span>
+<span class="cstat-no" title="statement not covered">  var request = require('request');</span>
+<span class="cstat-no" title="statement not covered">  var fs = require('fs');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">  if (template === '' || typeof template === 'undefined') {</span>
+<span class="cstat-no" title="statement not covered">    request('https://www.gitignore.io/api/list', <span class="fstat-no" title="function not covered">function(error, response, body) {</span></span>
+<span class="cstat-no" title="statement not covered">      console.log('|- ' + body.replace(new RegExp(','.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, '\\$1'), 'g'), '\n|- '));</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">      console.log(notice('[~] You must enter one of the templates or languages listed above.'));</span>
+    });
+  } else {
+<span class="cstat-no" title="statement not covered">    request('https://www.gitignore.io/api/' + template, <span class="fstat-no" title="function not covered">function(error, response, body) {</span></span>
+<span class="cstat-no" title="statement not covered">      if (body.split('\n')[2].substring(0, 10) === '#!! ERROR:') { // Template doesn't exist.</span>
+<span class="cstat-no" title="statement not covered">        request('https://www.gitignore.io/api/list', <span class="fstat-no" title="function not covered">function(error, response, body) {</span></span>
+<span class="cstat-no" title="statement not covered">          console.log('|- ' + body.replace(new RegExp(','.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, '\\$1'), 'g'), '\n|- '));</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">          console.log(whoops('[✖] Template ' + template + ' does not exist. '));</span>
+<span class="cstat-no" title="statement not covered">          console.log(notice('[~] You must enter one of the templates or languages listed above.'));</span>
+        });
+      } else { // Does exist!
+<span class="cstat-no" title="statement not covered">        fs.appendFile('.gitignore', body, <span class="fstat-no" title="function not covered">function(err) {</span></span>
+<span class="cstat-no" title="statement not covered">          if (err) {</span>
+<span class="cstat-no" title="statement not covered">            console.log(whoops('[✖] Could not create .gitignore for ' + template + '.'));</span>
+          } else {
+<span class="cstat-no" title="statement not covered">            console.log(success('[✔] Created .gitignore for ' + template + '!'));</span>
+          }
+        });
+      }
+    });
+  }
+};
+&nbsp;
+exports.clone = <span class="fstat-no" title="function not covered">function(repository) {</span>
+  // Nothing to clone.
+<span class="cstat-no" title="statement not covered">  if (repository === '' || typeof repository === 'undefined') {</span>
+<span class="cstat-no" title="statement not covered">    console.log(notice('[~] You must enter a repository URL or GitHub project (username/repository).'));</span>
+  } else {
+<span class="cstat-no" title="statement not covered">    exec('git clone ' + repository, <span class="fstat-no" title="function not covered">function(error, stdout, stderr) {</span></span>
+<span class="cstat-no" title="statement not covered">      if (stderr.substring(0, 7) === 'Cloning') {</span>
+<span class="cstat-no" title="statement not covered">        if (stderr.split('\n')[1].split(' ')[0] === 'fatal:') {</span>
+<span class="cstat-no" title="statement not covered">          console.log(whoops('[✖] Could not clone repository.'));</span>
+        } else {
+<span class="cstat-no" title="statement not covered">          console.log(success('[✔] Cloned into ' + stderr.split('\n')[0].split(' ')[2]));</span>
+        }
+      } else {
+<span class="cstat-no" title="statement not covered">        if (stderr.substring(0, 23) === 'fatal: destination path') {</span>
+<span class="cstat-no" title="statement not covered">          console.log(notice('[~] Directory ' + stderr.split(' ')[3] + ' is not empty.'));</span>
+        } else {
+<span class="cstat-no" title="statement not covered">          console.log(whoops('[✖] Could not clone repository.'));</span>
+        }
+      }
+    });
+  }
+};
+&nbsp;
+exports.cloneGitHub = <span class="fstat-no" title="function not covered">function(repository) {</span>
+<span class="cstat-no" title="statement not covered">  if (repository === '' || typeof repository === 'undefined') {</span>
+<span class="cstat-no" title="statement not covered">    exports.clone(repository);</span>
+  } else {
+<span class="cstat-no" title="statement not covered">    exports.clone('https://github.com/' + repository + '.git');</span>
+  }
+};
+&nbsp;
+exports.addAll = <span class="fstat-no" title="function not covered">function() {</span>
+<span class="cstat-no" title="statement not covered">  exec('git add -A');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">  console.log(success('[✔] Added everything!'));</span>
+};
+&nbsp;
+exports.addSingle = <span class="fstat-no" title="function not covered">function(target) {</span>
+  // TODO: Fix the Error handling! Currently just ignores warnings
+<span class="cstat-no" title="statement not covered">  exec('git add ' + target, <span class="fstat-no" title="function not covered">function(error, stdout, stderr) {</span></span>
+<span class="cstat-no" title="statement not covered">    if (typeof target === 'undefined') {// Then just add all.</span>
+<span class="cstat-no" title="statement not covered">      exports.addAll();</span>
+    } else {
+<span class="cstat-no" title="statement not covered">      if (stderr.substring(0, 5) === 'fatal') {</span>
+<span class="cstat-no" title="statement not covered">        console.log(whoops('[✖] Could not add target specified. ') + chalk.red('Are you sure the target exists?'));</span>
+      } else {
+<span class="cstat-no" title="statement not covered">        console.log(success('[✔] Added ' + target + '!'));</span>
+      }
+    }
+  });
+};
+&nbsp;
+exports.addOptions = <span class="fstat-no" title="function not covered">function(options, target) {</span>
+  // TODO: Fix the Error Handling! Currently just ignores warnings
+<span class="cstat-no" title="statement not covered">  exec('git add -' + options + ' ' + target, <span class="fstat-no" title="function not covered">function(error, stdout, stderr) {</span></span>
+<span class="cstat-no" title="statement not covered">    if (typeof target === 'undefined') {// Then just add all.</span>
+<span class="cstat-no" title="statement not covered">      exports.addAll();</span>
+    } else {
+<span class="cstat-no" title="statement not covered">      if (stderr.substring(0, 5) === 'fatal') {</span>
+<span class="cstat-no" title="statement not covered">        console.log(whoops('[✖] Could not add target specified. ') + chalk.red('Are you sure the target exists?'));</span>
+      } else {
+<span class="cstat-no" title="statement not covered">        console.log(success('[✔] Added ' + target + '!'));</span>
+      }
+    }
+  });
+};
+&nbsp;
+exports.commit = <span class="fstat-no" title="function not covered">function(message, addAll) {</span>
+  // No commit message.
+<span class="cstat-no" title="statement not covered">  if (message === '' || typeof message === 'undefined') {</span>
+<span class="cstat-no" title="statement not covered">    console.log(notice('[~] You must enter a commit message.'));</span>
+  } else {
+<span class="cstat-no" title="statement not covered">    if (addAll) {</span>
+<span class="cstat-no" title="statement not covered">      exports.addAll();</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered">    exec('git commit -m "' + message + '"', <span class="fstat-no" title="function not covered">function(error, stdout, stderr) {</span></span>
+<span class="cstat-no" title="statement not covered">      if (stdout.substring(0, 1) === '[') {</span>
+<span class="cstat-no" title="statement not covered">        console.log(success('[✔] Committed!'));</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">        console.log();</span>
+<span class="cstat-no" title="statement not covered">        console.log('"' + underline(message) + '"');</span>
+      } else <span class="cstat-no" title="statement not covered">if (stdout.substring(0, 2) === 'On') {</span>
+<span class="cstat-no" title="statement not covered">        console.log(notice('[~] Everything already committed.'));</span>
+      } else {
+<span class="cstat-no" title="statement not covered">        console.log(whoops('[✖] Could not commit changes.') + chalk.red(' Try again if there was a large amount of changes to add.'));</span>
+      }
+    });
+  }
+};
+&nbsp;
+exports.push = <span class="fstat-no" title="function not covered">function() {</span>
+<span class="cstat-no" title="statement not covered">  exec('git push', <span class="fstat-no" title="function not covered">function(error, stdout, stderr) {</span></span>
+<span class="cstat-no" title="statement not covered">    if (stderr.split('\n')[0] === 'Everything up-to-date') {</span>
+<span class="cstat-no" title="statement not covered">      console.log(notice('[~] All commits already pushed.'));</span>
+    } else {
+<span class="cstat-no" title="statement not covered">      if (stderr.split('\n')[1].split(' ')[0] === 'fatal:') {</span>
+<span class="cstat-no" title="statement not covered">        if (stderr.split('\n')[1].substring(0, 23) === 'fatal: unable to access') {</span>
+<span class="cstat-no" title="statement not covered">          console.log(whoops('[✖] Unable to access remote repository due to insufficient permissions.'));</span>
+        } else {
+<span class="cstat-no" title="statement not covered">          console.log(whoops('[✖] Could not push commits.'));</span>
+        }
+      } else <span class="cstat-no" title="statement not covered">if (stderr.split('\n')[0].split(' ')[0] === 'To') {</span>
+<span class="cstat-no" title="statement not covered">        if (stderr.split('\n')[1].split(' ')[1] === '!') { // Need to pull first.</span>
+          // TODO: add handling for non-fast-forwards (when you need to pull first, merge, and then push).
+<span class="cstat-no" title="statement not covered">          console.log(notice('[~] Push rejected! Pull changes from remote first.'));</span>
+        } else {
+<span class="cstat-no" title="statement not covered">          console.log(success('[✔] Pushed!'));</span>
+        }
+      } else <span class="cstat-no" title="statement not covered">if (stderr.split('\n')[0].substring(0, 30) === 'warning: push.default is unset') {</span>
+<span class="cstat-no" title="statement not covered">        if (stderr.split('\n')[21] === 'Everything up-to-date') {</span>
+<span class="cstat-no" title="statement not covered">          console.log(notice('[~] All commits already pushed.'));</span>
+        } else {
+<span class="cstat-no" title="statement not covered">          if (stderr.split('\n')[22].split(' ')[0] === 'fatal:') {</span>
+<span class="cstat-no" title="statement not covered">            if (stderr.split('\n')[22].substring(0, 23) === 'fatal: unable to access') {</span>
+<span class="cstat-no" title="statement not covered">              console.log(whoops('[✖] Unable to access remote repository due to insufficient permissions.'));</span>
+            } else {
+<span class="cstat-no" title="statement not covered">              console.log(whoops('[✖] Could not push commits.'));</span>
+            }
+          } else <span class="cstat-no" title="statement not covered">if (stderr.split('\n')[21].split(' ')[0] === 'To') {</span>
+<span class="cstat-no" title="statement not covered">            if (stderr.split('\n')[22].split(' ')[1] === '!') { // Need to pull first.</span>
+              // TODO: add handling for non-fast-forwards (when you need to pull first, merge, and then push).
+<span class="cstat-no" title="statement not covered">              console.log(notice('[~] Push rejected! Pull changes from remote first.'));</span>
+            } else {
+<span class="cstat-no" title="statement not covered">              console.log(success('[✔] Pushed!'));</span>
+            }
+          } else { // Generic error.
+<span class="cstat-no" title="statement not covered">            console.log(whoops('[✖] Could not push commits.'));</span>
+          }
+        }
+      } else { // Generic error.
+<span class="cstat-no" title="statement not covered">        console.log(whoops('[✖] Could not push commits.'));</span>
+      }
+    }
+  });
+};
+&nbsp;
+exports.pull = <span class="fstat-no" title="function not covered">function() {</span>
+<span class="cstat-no" title="statement not covered">  exec('git pull', <span class="fstat-no" title="function not covered">function(error, stdout, stderr) {</span></span>
+<span class="cstat-no" title="statement not covered">    if (stdout.substring(0, 7) === 'Already') {</span>
+<span class="cstat-no" title="statement not covered">      console.log(notice('[~] Everything is already up-to-date.'));</span>
+    } else <span class="cstat-no" title="statement not covered">if (stdout.substring(0, 8) === 'Updating') {</span>
+<span class="cstat-no" title="statement not covered">      if (stdout.split('\n')[1] === 'error: Your local changes to the following files would be overwritten by merge:') {</span>
+<span class="cstat-no" title="statement not covered">        console.log(whoops('[✖] Could not pull commits.') + chalk.red(' (may have to pull using the ') + chalk.red.underline('standard git command') + chalk.red(' to handle merge conflicts.)'));</span>
+      } else {
+<span class="cstat-no" title="statement not covered">        console.log(success('[✔] Pulled!'));</span>
+      }
+    } else {
+      // TODO: add handling for merge conflicts.
+<span class="cstat-no" title="statement not covered">      console.log(whoops('[✖] Could not pull commits.') + chalk.red(' (may have to pull using the ') + chalk.red.underline('standard git command') + chalk.red(' to handle merge conflicts.)'));</span>
+    }
+  });
+};
+&nbsp;
+exports.fetch = <span class="fstat-no" title="function not covered">function() {</span>
+<span class="cstat-no" title="statement not covered">  exec('git fetch', <span class="fstat-no" title="function not covered">function(error, stdout, stderr) {</span></span>
+<span class="cstat-no" title="statement not covered">    if (stdout === '' &amp;&amp; stderr === '') {</span>
+<span class="cstat-no" title="statement not covered">      console.log(success('[✔] Fetched!'));</span>
+    } else {
+<span class="cstat-no" title="statement not covered">      console.log(whoops('[✖] Could not fetch commits.'));</span>
+    }
+  });
+};
+&nbsp;
+exports.fetchAll = <span class="fstat-no" title="function not covered">function() {</span>
+<span class="cstat-no" title="statement not covered">  exec('git fetch --all', <span class="fstat-no" title="function not covered">function(error, stdout, stderr) {</span></span>
+<span class="cstat-no" title="statement not covered">    if (stderr === '') {</span>
+<span class="cstat-no" title="statement not covered">      console.log(success('[✔] Fetched all!'));</span>
+    } else {
+<span class="cstat-no" title="statement not covered">      console.log(whoops('[✖] Could not fetch commits.'));</span>
+    }
+  });
+};
+&nbsp;
+exports.status = <span class="fstat-no" title="function not covered">function() {</span>
+<span class="cstat-no" title="statement not covered">  exec('git status', <span class="fstat-no" title="function not covered">function(error, stdout, stderr) {</span></span>
+<span class="cstat-no" title="statement not covered">    var status = stdout.split('\n');</span>
+&nbsp;
+    // Branch.
+<span class="cstat-no" title="statement not covered">    var branch;</span>
+<span class="cstat-no" title="statement not covered">    if (status[0].split(' ')[0] === 'HEAD') { // If HEAD is at a commit.</span>
+<span class="cstat-no" title="statement not covered">      branch = chalk.dim('branch  ') + chalk.gray.dim(' | ') + success(status[0].split(' ')[3]);</span>
+    } else {
+<span class="cstat-no" title="statement not covered">      branch = chalk.dim('branch  ') + chalk.gray.dim(' | ') + success(status[0].split(' ')[2]);</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered">    console.log(branch);</span>
+&nbsp;
+    // Position in branch.
+<span class="cstat-no" title="statement not covered">    var position;</span>
+<span class="cstat-no" title="statement not covered">    switch (status[1].split(' ')[3]) {</span>
+      case 'behind':
+<span class="cstat-no" title="statement not covered">        position = 'position' + chalk.gray.dim(' | ') + notice(status[1].split(' ')[7] + ' commits behind (fetch or pull)');</span>
+<span class="cstat-no" title="statement not covered">        break;</span>
+&nbsp;
+      case 'for': // Quick hack to get it working when changes are not staged.
+      case 'working': // Quick hack to get it working with freshly initialized git repositories.
+      case 'up-to-date':
+<span class="cstat-no" title="statement not covered">        position = chalk.dim('position') + chalk.gray.dim(' | ') + success('up-to-date');</span>
+<span class="cstat-no" title="statement not covered">        break;</span>
+&nbsp;
+      case 'ahead':
+<span class="cstat-no" title="statement not covered">        position = 'position' + chalk.gray.dim(' | ') + notice(status[1].split(' ')[7] + ' commits ahead (push commits)');</span>
+<span class="cstat-no" title="statement not covered">        break;</span>
+&nbsp;
+      default:
+        // TODO: add proper handling for freshly initialized git repositories.
+<span class="cstat-no" title="statement not covered">        if (typeof status[1].split(' ')[3] === 'undefined') { // Quick hack to get it working with freshly initialized git repositories.</span>
+<span class="cstat-no" title="statement not covered">          position = chalk.dim('position') + chalk.gray.dim(' | ') + success('up-to-date');</span>
+        } else <span class="cstat-no" title="statement not covered">if (status[1] === 'Changes to be committed:') {</span>
+<span class="cstat-no" title="statement not covered">          position = chalk.dim('position') + chalk.gray.dim(' | ') + success('up-to-date');</span>
+        } else {
+<span class="cstat-no" title="statement not covered">          position = 'position' + chalk.gray.dim(' | ') + whoops('diverged');</span>
+        }
+    }
+<span class="cstat-no" title="statement not covered">    console.log(position);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">    console.log();</span>
+&nbsp;
+    // Staging.
+<span class="cstat-no" title="statement not covered">    var staging;</span>
+<span class="cstat-no" title="statement not covered">    if (status[2] === 'Initial commit') { // Fresh repository.</span>
+<span class="cstat-no" title="statement not covered">      switch (status[4]) {</span>
+        case 'Untracked files:':
+<span class="cstat-no" title="statement not covered">          staging = 'staging ' + chalk.gray.dim(' | ') + notice('not all changes staged (add all changes)');</span>
+<span class="cstat-no" title="statement not covered">          break;</span>
+&nbsp;
+        case 'Changes to be committed:':
+        case 'nothing to commit (create/copy files and use "git add" to track)':
+<span class="cstat-no" title="statement not covered">          staging = chalk.dim('staging ') + chalk.gray.dim(' | ') + success('all changes staged');</span>
+<span class="cstat-no" title="statement not covered">          break;</span>
+      }
+    } else <span class="cstat-no" title="statement not covered">if (status[1].substring(0, 14) === 'Your branch is') { // There's a remote origin.</span>
+<span class="cstat-no" title="statement not covered">      if (status[2] === '  (use "git pull" to update your local branch)' || status[2] === '  (use "git push" to publish your local commits)') {</span>
+<span class="cstat-no" title="statement not covered">        switch (status[4]) {</span>
+          case 'Changes not staged for commit:':
+          case 'Untracked files:':
+<span class="cstat-no" title="statement not covered">            staging = 'staging ' + chalk.gray.dim(' | ') + notice('not all changes staged (add all changes)');</span>
+<span class="cstat-no" title="statement not covered">            break;</span>
+&nbsp;
+          case 'Changes to be committed:':
+          case 'nothing to commit, working directory clean':
+<span class="cstat-no" title="statement not covered">            staging = chalk.dim('staging ') + chalk.gray.dim(' | ') + success('all changes staged');</span>
+<span class="cstat-no" title="statement not covered">            break;</span>
+        }
+      } else {
+<span class="cstat-no" title="statement not covered">        if (status[2] === '') {</span>
+<span class="cstat-no" title="statement not covered">          switch (status[3]) {</span>
+            case 'Changes not staged for commit:':
+            case 'Untracked files:':
+<span class="cstat-no" title="statement not covered">              staging = 'staging ' + chalk.gray.dim(' | ') + notice('not all changes staged (add all changes)');</span>
+<span class="cstat-no" title="statement not covered">              break;</span>
+&nbsp;
+            case 'Changes to be committed:':
+            case 'nothing to commit, working directory clean':
+<span class="cstat-no" title="statement not covered">              staging = chalk.dim('staging ') + chalk.gray.dim(' | ') + success('all changes staged');</span>
+<span class="cstat-no" title="statement not covered">              break;</span>
+          }
+        } else {
+<span class="cstat-no" title="statement not covered">          switch (status[2]) {</span>
+            case 'Changes not staged for commit:':
+            case 'Untracked files:':
+<span class="cstat-no" title="statement not covered">              staging = 'staging ' + chalk.gray.dim(' | ') + notice('not all changes staged (add all changes)');</span>
+<span class="cstat-no" title="statement not covered">              break;</span>
+&nbsp;
+            case 'Changes to be committed:':
+            case 'nothing to commit, working directory clean':
+<span class="cstat-no" title="statement not covered">              staging = chalk.dim('staging ') + chalk.gray.dim(' | ') + success('all changes staged');</span>
+<span class="cstat-no" title="statement not covered">              break;</span>
+          }
+        }
+      }
+    } else { // No remote.
+<span class="cstat-no" title="statement not covered">      switch (status[1]) {</span>
+        case 'Changes not staged for commit:':
+        case 'Untracked files:':
+<span class="cstat-no" title="statement not covered">          staging = 'staging ' + chalk.gray.dim(' | ') + notice('not all changes staged (add all changes)');</span>
+<span class="cstat-no" title="statement not covered">          break;</span>
+&nbsp;
+        case 'Changes to be committed:':
+        case 'nothing to commit, working directory clean':
+<span class="cstat-no" title="statement not covered">          staging = chalk.dim('staging ') + chalk.gray.dim(' | ') + success('all changes staged');</span>
+<span class="cstat-no" title="statement not covered">          break;</span>
+      }
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered">    console.log(staging);</span>
+&nbsp;
+    // Commits.
+<span class="cstat-no" title="statement not covered">    var commits;</span>
+<span class="cstat-no" title="statement not covered">    if (status[2] === 'Initial commit') {</span>
+<span class="cstat-no" title="statement not covered">      switch (status[4]) {</span>
+        case 'Changes to be committed:':
+<span class="cstat-no" title="statement not covered">          commits = 'commits ' + chalk.gray.dim(' | ') + notice('not all changes committed (commit all changes)');</span>
+<span class="cstat-no" title="statement not covered">          break;</span>
+&nbsp;
+        case 'nothing to commit (create/copy files and use "git add" to track)':
+<span class="cstat-no" title="statement not covered">          commits = chalk.dim('commits ') + chalk.gray.dim(' | ') + success('all changes committed');</span>
+<span class="cstat-no" title="statement not covered">          break;</span>
+&nbsp;
+        default:
+<span class="cstat-no" title="statement not covered">          commits = chalk.dim('commits ') + chalk.gray.dim(' | ') + success('all changes committed');</span>
+      }
+    } else <span class="cstat-no" title="statement not covered">if (status[1].substring(0, 14) === 'Your branch is') { // There's a remote origin.</span>
+<span class="cstat-no" title="statement not covered">      if (status[2] === '  (use "git pull" to update your local branch)' || status[2] === '  (use "git push" to publish your local commits)') {</span>
+<span class="cstat-no" title="statement not covered">        switch (status[4]) {</span>
+          case 'Changes not staged for commit:':
+          case 'nothing to commit, working directory clean':
+<span class="cstat-no" title="statement not covered">            commits = chalk.dim('commits ') + chalk.gray.dim(' | ') + success('all changes committed');</span>
+<span class="cstat-no" title="statement not covered">            break;</span>
+&nbsp;
+          case 'Changes to be committed:':
+<span class="cstat-no" title="statement not covered">            commits = 'commits ' + chalk.gray.dim(' | ') + notice('not all changes committed (commit all changes)');</span>
+<span class="cstat-no" title="statement not covered">            break;</span>
+&nbsp;
+          default:
+<span class="cstat-no" title="statement not covered">            commits = chalk.dim('commits ') + chalk.gray.dim(' | ') + success('all changes committed');</span>
+        }
+      } else {
+<span class="cstat-no" title="statement not covered">        if (status[2] === '') {</span>
+<span class="cstat-no" title="statement not covered">          switch (status[3]) {</span>
+            case 'Changes not staged for commit:':
+            case 'nothing to commit, working directory clean':
+<span class="cstat-no" title="statement not covered">              commits = chalk.dim('commits ') + chalk.gray.dim(' | ') + success('all changes committed');</span>
+<span class="cstat-no" title="statement not covered">              break;</span>
+&nbsp;
+            case 'Changes to be committed:':
+<span class="cstat-no" title="statement not covered">              commits = 'commits ' + chalk.gray.dim(' | ') + notice('not all changes committed (commit all changes)');</span>
+<span class="cstat-no" title="statement not covered">              break;</span>
+&nbsp;
+            default:
+<span class="cstat-no" title="statement not covered">              commits = chalk.dim('commits ') + chalk.gray.dim(' | ') + success('all changes committed');</span>
+          }
+        } else {
+<span class="cstat-no" title="statement not covered">          switch (status[2]) {</span>
+            case 'Changes not staged for commit:':
+            case 'nothing to commit, working directory clean':
+<span class="cstat-no" title="statement not covered">              commits = chalk.dim('commits ') + chalk.gray.dim(' | ') + success('all changes committed');</span>
+<span class="cstat-no" title="statement not covered">              break;</span>
+&nbsp;
+            case 'Changes to be committed:':
+<span class="cstat-no" title="statement not covered">              commits = 'commits ' + chalk.gray.dim(' | ') + notice('not all changes committed (commit all changes)');</span>
+<span class="cstat-no" title="statement not covered">              break;</span>
+&nbsp;
+            default:
+<span class="cstat-no" title="statement not covered">              commits = chalk.dim('commits ') + chalk.gray.dim(' | ') + success('all changes committed');</span>
+          }
+        }
+      }
+    } else {
+<span class="cstat-no" title="statement not covered">      switch (status[1]) {</span>
+        case 'Changes not staged for commit:':
+        case 'nothing to commit, working directory clean':
+<span class="cstat-no" title="statement not covered">          commits = chalk.dim('commits ') + chalk.gray.dim(' | ') + success('all changes committed');</span>
+<span class="cstat-no" title="statement not covered">          break;</span>
+&nbsp;
+        case 'Changes to be committed:':
+<span class="cstat-no" title="statement not covered">          commits = 'commits ' + chalk.gray.dim(' | ') + notice('not all changes committed (commit all changes)');</span>
+<span class="cstat-no" title="statement not covered">          break;</span>
+&nbsp;
+        default:
+<span class="cstat-no" title="statement not covered">          commits = chalk.dim('commits ') + chalk.gray.dim(' | ') + success('all changes committed');</span>
+      }
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered">    console.log(commits);</span>
+  });
+};
+&nbsp;
+exports.log = <span class="fstat-no" title="function not covered">function(file) {</span>
+<span class="cstat-no" title="statement not covered">  var fileName = '';</span>
+<span class="cstat-no" title="statement not covered">  var fs = require('fs');</span>
+<span class="cstat-no" title="statement not covered">  var logCommand;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">  if (typeof file !== 'undefined' &amp;&amp; file !== '') {</span>
+    // Testing if the file exists
+<span class="cstat-no" title="statement not covered">    try {</span>
+      // Trying to open the file
+<span class="cstat-no" title="statement not covered">      fs.openSync(file, 'r');</span>
+    } catch (ENOENT) {
+      // If the file does not exist, we tell the user.
+<span class="cstat-no" title="statement not covered">      console.log(whoops('[✖] File ' + file + ' does not exist. '));</span>
+<span class="cstat-no" title="statement not covered">      return;</span>
+    } finally {
+      // We might have other read/write permission errors, etc.
+      // But this is not what we are looking for
+      // So ending here is good to continue, and we can process the git command
+<span class="cstat-no" title="statement not covered">      fileName = ' ' + file;</span>
+    }
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered">  if (isWindows) {</span>
+<span class="cstat-no" title="statement not covered">    exec('git log --pretty=format:{^|commit^|:^|%H^|,%n^|author^|:^|%an:%ae^|,%n^|date^|:^|%ad^|,%n^|message^|:^|%f^|},' + fileName, <span class="fstat-no" title="function not covered">function(error, stdout, stderr) {</span></span>
+<span class="cstat-no" title="statement not covered">      stdout = '[' + stdout.replace(/\|/g, '"').slice(0, -1) + ']';</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">      if (stdout === '[]\n') { // No commits, so empty array is returned.</span>
+<span class="cstat-no" title="statement not covered">        console.log(notice('[~] No commits... yet! Commit with the \'gg c\' command.'));</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered">      var log = JSON.parse(stdout);</span>
+<span class="cstat-no" title="statement not covered">      log.reverse(); </span>// Show newest at the bottom.
+&nbsp;
+<span class="cstat-no" title="statement not covered">      for (var i = 0; i &lt; log.length; i++) {</span>
+<span class="cstat-no" title="statement not covered">        console.log(); </span>// New line between each commit.
+&nbsp;
+<span class="cstat-no" title="statement not covered">        console.log(notice('[' + log[i].commit + ']'));</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">        var author = {</span>
+          name: log[i].author.split(':')[0].trim(),
+          email: '&lt;' + log[i].author.split(':')[1] + '&gt;'
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered">        console.log('|- ' + chalk.gray(author.name) + ' ' + chalk.gray.dim(author.email));</span>
+<span class="cstat-no" title="statement not covered">        console.log('|- ' + chalk.gray.dim(log[i].date));</span>
+<span class="cstat-no" title="statement not covered">        console.log('|- ' + chalk.green(log[i].message.split('-').join(' ')));</span>
+      }
+    });
+  } else {
+    // https://gist.github.com/textarcana/1306223
+<span class="cstat-no" title="statement not covered">    exec('git log --pretty=format:\'{%n  "commit": "%H",%n  "author": "%an &lt;%ae&gt;",%n  "date": "%ad",%n  "message": "%f"%n},\'' + fileName + ' $@ | perl -pe \'BEGIN{print "["}; END{print "]\n"}\' | perl -pe \'s/},]/}]/\'', <span class="fstat-no" title="function not covered">function(error, stdout, stderr) {</span></span>
+<span class="cstat-no" title="statement not covered">      if (stdout === '[]\n') { // No commits, so empty array is returned.</span>
+<span class="cstat-no" title="statement not covered">        console.log(notice('[~] No commits... yet! Commit with the \'gg c\' command.'));</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered">      var log = JSON.parse(stdout);</span>
+<span class="cstat-no" title="statement not covered">      log.reverse(); </span>// Show newest at the bottom.
+&nbsp;
+<span class="cstat-no" title="statement not covered">      for (var i = 0; i &lt; log.length; i++) {</span>
+<span class="cstat-no" title="statement not covered">        console.log(); </span>// New line between each commit.
+&nbsp;
+<span class="cstat-no" title="statement not covered">        console.log(notice('[' + log[i].commit + ']'));</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">        var author = {</span>
+          name: log[i].author.split('&lt;')[0].trim(),
+          email: '&lt;' + log[i].author.split('&lt;')[1]
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered">        console.log('|- ' + chalk.gray(author.name) + ' ' + chalk.gray.dim(author.email));</span>
+<span class="cstat-no" title="statement not covered">        console.log('|- ' + chalk.gray.dim(log[i].date));</span>
+<span class="cstat-no" title="statement not covered">        console.log('|- ' + chalk.green(log[i].message.split('-').join(' ')));</span>
+      }
+    });
+  }
+};
+&nbsp;
+exports.branch = <span class="fstat-no" title="function not covered">function(name) {</span>
+<span class="cstat-no" title="statement not covered">  if (name === '' || typeof name === 'undefined') { // List branches.</span>
+<span class="cstat-no" title="statement not covered">    exec('git branch', <span class="fstat-no" title="function not covered">function(error, stdout, stderr) {</span></span>
+<span class="cstat-no" title="statement not covered">      if (stdout === '') {</span>
+<span class="cstat-no" title="statement not covered">        console.log(notice('[~] No branches exist.'));</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered">      var branches = stdout.split('\n');</span>
+<span class="cstat-no" title="statement not covered">      for (var i = 0; i &lt; branches.length - 1; i++) {</span>
+<span class="cstat-no" title="statement not covered">        if (branches[i].substring(0, 1) === '*') { // Current branch.</span>
+<span class="cstat-no" title="statement not covered">          console.log('|- ' + success.bold(branches[i].substring(2)));</span>
+        } else {
+<span class="cstat-no" title="statement not covered">          console.log(chalk.dim('|- ' + branches[i].substring(2)));</span>
+        }
+      }
+    });
+  } else { // Create branch and checkout.
+<span class="cstat-no" title="statement not covered">    exec('git branch ' + name, <span class="fstat-no" title="function not covered">function(error, stdout, stderr) {</span></span>
+<span class="cstat-no" title="statement not covered">      if (stderr.split(' ')[0] === 'fatal:') {</span>
+<span class="cstat-no" title="statement not covered">        if (stderr.substring(0, 21) === 'fatal: A branch named') { // Branch already exists.</span>
+<span class="cstat-no" title="statement not covered">          console.log(notice('[~] Branch \'' + name + '\' already exists.'));</span>
+&nbsp;
+          // Checkout branch.
+<span class="cstat-no" title="statement not covered">          exports.checkout(name);</span>
+        } else <span class="cstat-no" title="statement not covered">if (stderr.slice(-24) === 'not a valid branch name.') { // Invalid branch name.</span>
+<span class="cstat-no" title="statement not covered">          console.log(notice('[~] \'' + name + '\' is an invalid branch name.'));</span>
+        } else <span class="cstat-no" title="statement not covered">if (stderr.substring(7, 30) === 'Not a valid object name') { // No branches exist.</span>
+<span class="cstat-no" title="statement not covered">          console.log(notice('[~] No branches exist.'));</span>
+        } else { // Generic error.
+<span class="cstat-no" title="statement not covered">          console.log(whoops('[✖] Could not create new branch \'' + name + '\'.'));</span>
+        }
+      } else {
+<span class="cstat-no" title="statement not covered">        console.log(success('[✔] Created new branch \'' + name + '\'!'));</span>
+&nbsp;
+        // Switch to new branch.
+<span class="cstat-no" title="statement not covered">        exports.checkout(name);</span>
+      }
+    });
+  }
+};
+&nbsp;
+exports.checkout = <span class="fstat-no" title="function not covered">function(branch) {</span>
+<span class="cstat-no" title="statement not covered">  if (branch === '' || typeof branch === 'undefined') { // If no branch provided, list the branches.</span>
+<span class="cstat-no" title="statement not covered">    exports.branch();</span>
+  } else {
+<span class="cstat-no" title="statement not covered">    exec('git checkout ' + branch, <span class="fstat-no" title="function not covered">function(error, stdout, stderr) {</span></span>
+<span class="cstat-no" title="statement not covered">      switch (stderr.split(' ')[0]) {</span>
+        case 'Already':
+<span class="cstat-no" title="statement not covered">          console.log(notice('[~] Already on branch \'' + branch + '\'.'));</span>
+<span class="cstat-no" title="statement not covered">          break;</span>
+&nbsp;
+        case 'Switched':
+<span class="cstat-no" title="statement not covered">          console.log(success('[✔] Switched to branch \'' + branch + '\'!'));</span>
+<span class="cstat-no" title="statement not covered">          break;</span>
+&nbsp;
+        case 'error:': // Branch does not exist.
+<span class="cstat-no" title="statement not covered">          console.log(notice('[~] Branch \'' + branch + '\' doesn\'t exist.'));</span>
+<span class="cstat-no" title="statement not covered">          console.log();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">          exports.branch(branch);</span>
+<span class="cstat-no" title="statement not covered">          break;</span>
+&nbsp;
+        case 'fatal':
+<span class="cstat-no" title="statement not covered">          console.log(notice('[~] No branches exist.'));</span>
+<span class="cstat-no" title="statement not covered">          break;</span>
+      }
+    });
+  }
+};
+&nbsp;
+exports.repoCheck = <span class="fstat-no" title="function not covered">function(callback) {</span>
+<span class="cstat-no" title="statement not covered">  exec('git rev-parse', <span class="fstat-no" title="function not covered">function(error, stdout, stderr) {</span></span>
+<span class="cstat-no" title="statement not covered">    if (stderr.length === 0) {</span>
+<span class="cstat-no" title="statement not covered">      return callback();</span>
+    }
+<span class="cstat-no" title="statement not covered">    console.log(whoops('[✖] Not in a valid git repository! Run "gg i" to initialise one.'));</span>
+  });
+};
+&nbsp;
+&nbsp;</pre></td></tr>
+</tbody></table></pre>
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Thu Apr 20 2017 04:01:38 GMT+0000 (UTC)</div>
+</div>
+
+
+</body></html>
